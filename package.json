@@ -10,7 +10,8 @@
     "start": "tent build --out build && tent start build --data data --port 4805",
     "dev": "tent dev",
     "check": "tent check",
-    "test": "tent test"
+    "test": "tent test",
+    "lint": "biome format && biome lint --error-on-warnings"
   },
   "engines": {
     "tentjs": "1.0"
@@ -20,6 +21,11 @@
     "tentjs": "0.9.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "playwright-core": "1.64.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArynBuilds/tent-bots.git"
   }
 }

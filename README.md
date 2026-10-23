@@ -1,108 +1,105 @@
+<div align="center">
+
 # tent-bots
 
-Always-on bots that work for you, on your own computer.
+**Always-on bots that work for you, on your own computer.**
 
-Each bot has a name, a brief that says what it is for, and a memory of its own. A bot can run on a schedule, and you can talk to it. The **Chief** sends what you ask to the bot whose brief fits, and bots hand work to each other. Before a bot does anything that sends, pays or deletes, it asks you first, and you answer Yes or No. There is a daily limit on how much the bots can use.
+Give each bot a name, a brief and a schedule. A chief routes what you ask to the right bot, and nothing is sent, paid for or deleted until you say Yes.
 
-Every bot is run by [Claude Code](https://docs.claude.com/en/docs/claude-code). Your data, your account and your bots' folders stay on your computer. The app is built with [Tent.js](https://tentjs.com).
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Node.js 26](https://img.shields.io/badge/Node.js-26-339933?logo=node.js&logoColor=white)
+![Tent.js](https://img.shields.io/badge/built%20with-Tent.js-111111)
+![Claude Code](https://img.shields.io/badge/runs%20on-Claude%20Code-D97757)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 
-## What you need
+[Quick start](#quick-start) · [Running](docs/running.md) · [Architecture](docs/architecture.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
 
-- [Node.js](https://nodejs.org) 26
-- One of these two ways to reach Claude:
-  - a Claude subscription that you sign in to Claude Code with, or
-  - an Anthropic API key from [console.anthropic.com](https://console.anthropic.com)
+</div>
 
-Claude Code is installed along with the app, so you do not need to install it yourself.
+---
 
-## Install
+tent-bots runs a small team of bots on your own computer. Each bot is [Claude Code](https://docs.claude.com/en/docs/claude-code) working in a folder of its own, with a brief that says what it is for and a memory that lasts.
 
-```sh
-git clone <this repository> tent-bots
-cd tent-bots
-npm install
-npm run setup
+- **Bots with their own memory.** Each bot keeps its own Claude Code session, files and skills. No bot sees another bot's memory.
+- **Routines.** "Every morning at eight": a bot runs on its schedule with nobody asking.
+- **A chief.** Tell the chief what you need. It splits the request into tasks, hands each to the bot whose brief fits, and asks you when no bot does.
+- **Yes or No first.** Before a bot sends, pays or deletes, it asks you. Nothing happens until you answer.
+- **Your tools through MCP.** Files, a browser, or any MCP server of your own, chosen per bot.
+- **Limits you set.** A daily token limit for all bots, and a setting for whether bots may run commands.
+- **Local.** The account, the data and the bots' folders stay on your computer. It also runs in a desktop window.
+
+## How it works
+
+A message, a routine or the chief starts a run of a bot. The driver runs Claude Code once per turn in the bot's folder and resumes its session. When Claude Code wants a tool that needs your approval, the run waits for your answer:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Y as You
+    participant A as tent-bots
+    participant D as claudeCode driver
+    participant C as Claude Code
+    participant T as Tool
+
+    Y->>A: "Book a call with Ada"
+    A->>D: start a run of the bot
+    D->>C: claude -p in the bot's folder, session resumed
+    C->>T: find free times (reads: allowed)
+    C-->>D: wants sendInvite (refused, needs approval)
+    D->>A: open an ask, wait
+    A->>Y: Yes or No?
+    Y->>A: Yes
+    D->>C: next turn, sendInvite allowed
+    C->>T: send the invitation
+    C-->>D: "The invitation is sent"
+    D->>A: answer, memory, use of the day
 ```
 
-`npm run setup` creates the `data/` folder and the key that encrypts the secrets kept there. You only need to run it once.
+It is one [Tent.js](https://tentjs.com) app: tables, functions, flows, two agents and the screens, plus a driver that runs Claude Code and a small MCP bridge for the app's own tools. The [architecture guide](docs/architecture.md) covers a run, the asks, the chief, routines, the account and what is kept on disk. [docs/architecture.html](docs/architecture.html) is an interactive map of the whole system, where each box links to its source (download it and open it in a browser).
 
-## Connect Claude
+## Quick start
 
-Choose one of the two ways:
-
-- **Claude account:** run `npx claude` once in this folder and sign in. The bots then use your Claude Code sign-in.
-- **API key:** start the app, open **Settings › General › Claude** and paste your key. It stays on this computer, encrypted in `data/`. Use **Remove** to go back to the Claude Code sign-in.
-
-## Start
+Requirements: Node.js 26, and a Claude subscription or an Anthropic API key.
 
 ```sh
+git clone https://github.com/ArynBuilds/tent-bots.git && cd tent-bots
+npm install          # the app, and Claude Code with it
+npm run setup        # creates data/ and the key for its secrets, once
+npx claude           # sign in to Claude Code, or add an API key in Settings later
 npm start
 ```
 
-Open http://127.0.0.1:4805. The first time, the app asks you to **create your account**. The account is stored only on this computer. After that, only that account can sign in.
+Open `http://127.0.0.1:4805` and create your account. It is stored only on this computer.
 
-## Keep it running
+The [running guide](docs/running.md) covers connecting Claude, starting the app whenever you sign in to your computer, the desktop window, MCP apps, your own mail and calendar, settings, backups and troubleshooting.
 
-To start the bots whenever you sign in to your computer, do the following once:
+## Security
 
-```sh
-npx tent build --out build
-npx tent service build --data data --port 4805 --install
-```
+- One account per computer, created on the first visit. After that, nobody can create another.
+- The app listens on `127.0.0.1` only. An API key is encrypted in `data/`, and Settings shows only its last four characters.
+- Bots edit files in their own folders without asking. Tools that act, and commands unless you allow them, wait for your Yes.
 
-On Windows this adds a task to the Task Scheduler, on macOS a launchd agent, and on Linux a systemd unit.
+Read [SECURITY.md](SECURITY.md) for what a bot can and cannot do, and report vulnerabilities privately as described there.
 
-## The desktop window (optional)
+## Status
 
-`desktop/` holds a small [Tauri](https://tauri.app) window. If the app is not running, the window starts it, then shows it. To build the window you need [Rust](https://rustup.rs):
+tent-bots is young software, and the first larger app built with Tent.js.
 
-```sh
-cd desktop
-cargo build --release
-cd ..
-npx tent service build --data data --port 4805 --line > desktop/target/release/start.txt
-```
+- Each bot has a folder and the tools you give it, but no machine of its own.
+- The interface is in English only.
+- A bot runs only while the app is running: use `tent service` to keep it on.
 
-The window is `desktop/target/release/bots` (`bots.exe` on Windows). It reads the start line from the `start.txt` file next to it, or from the `BOTS_START` environment variable.
-
-## Apps and tools (optional)
-
-Bots reach outside tools through MCP servers. In the app, **Connect apps** lists the servers you can switch on for a bot. A new account starts with two:
-
-- **Files:** reads and writes the files in a folder
-- **Browser:** opens web pages and works in them, through Playwright
-
-To add any other MCP server, give it a command or an address.
-
-The `mailbox` and `calendar` services in `services/tools.ts` connect your own mail and calendar MCP servers, at `127.0.0.1:7811` and `127.0.0.1:7812`. If you do not run those servers, everything else still works. To use them:
+## Development
 
 ```sh
-npx tent secrets set MAIL_KEY --live --data data
-npx tent secrets set CALENDAR_KEY --live --data data
-npx tent mcp approve mailbox
-npx tent mcp approve calendar
+npm run dev      # with the demo account: sam@example.com / a long secret
+npm run check    # every Tent.js finding at once
+npm run lint     # Biome
+npm test         # no test calls Claude: stand-ins answer in its place
 ```
 
-## Develop
-
-```sh
-npm run dev      # the app with the demo account: sam@example.com / a long secret
-npm run check    # every finding of Tent.js at once
-npm test         # the tests, with a stand-in Claude Code and stand-in tools
-```
-
-The tests never call Claude. `fakes/claude.ts` stands in for Claude Code, and `fakes/tools.ts` stands in for the mail and calendar servers. `seed.ts` adds the demo account in development and in tests only. A real install starts empty.
-
-| Folder | Holds |
-|---|---|
-| `tables/` | The data: bots, routines, memories, asks, turns, apps, skills, settings |
-| `functions/` | Queries, changes and actions, including the account and the Claude connection |
-| `agents/` | The bot agent and the Chief |
-| `driver/` | How a bot run becomes Claude Code turns, each in the bot's own folder |
-| `flows/` | Routines on a schedule, and the invitation that asks before it sends |
-| `screens/`, `components/` | The interface |
-| `desktop/` | The desktop window |
+[CONTRIBUTING.md](CONTRIBUTING.md) covers the setup, the conventions and the pull-request checklist. Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
-MIT
+[MIT](LICENSE) © 2026 tent-bots contributors.

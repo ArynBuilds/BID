@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check, lint, test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26.11.0
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Tent.js check
+        run: npm run check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Engine tests
+        run: npx tent test tests/engine.test.ts
+
+      - name: Setup tests
+        run: npx tent test tests/setup.test.ts

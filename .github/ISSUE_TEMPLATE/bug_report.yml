@@ -1,0 +1,61 @@
+name: Bug report
+description: Something does not work as documented.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please do not report security vulnerabilities here; see SECURITY.md.
+        Remove API keys, emails and the contents of your bots' folders before pasting logs.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Bots and runs
+        - Chief and hand-overs
+        - Routines
+        - Asks (Yes / No)
+        - Claude connection (sign-in or API key)
+        - MCP apps and tools
+        - Account and sign-in
+        - Desktop window
+        - Install and setup
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Make a bot ...
+        2. Ask it ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0 or a commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Node.js version, Claude Code version (`npx claude --version`), browser or desktop window.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: The output of `npm start`, and the failed run's error from the bot's talk.
+      render: text

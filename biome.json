@@ -8,7 +8,11 @@
       "!!results",
       "!!node_modules",
       "!!desktop/target",
-      "!!desktop/gen"
+      "!!desktop/gen",
+      "!!.archify",
+      "!!build",
+      "!!data",
+      "!docs/architecture.html"
     ]
   },
   "formatter": {

@@ -6,3 +6,4 @@ build/
 data/
 desktop/target/
 desktop/gen/
+/.archify/
