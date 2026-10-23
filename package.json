@@ -1,0 +1,25 @@
+{
+  "name": "tent-bots",
+  "version": "0.1.0",
+  "description": "Always-on bots that work for you, on your own computer, run by Claude Code",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "start": "tent build --out build && tent start build --data data --port 4805",
+    "dev": "tent dev",
+    "check": "tent check",
+    "test": "tent test"
+  },
+  "engines": {
+    "tentjs": "1.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-code": "2.1.309",
+    "tentjs": "0.9.0"
+  },
+  "devDependencies": {
+    "playwright-core": "1.64.0"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "files": {
+    "includes": [
+      "**",
+      "!tent.d.ts",
+      "!walk/pictures",
+      "!!.tent",
+      "!!results",
+      "!!node_modules",
+      "!!desktop/target",
+      "!!desktop/gen"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  },
+  "json": {
+    "formatter": {
+      "expand": "always"
+    }
+  },
+  "linter": {
+    "rules": {
+      "preset": "recommended",
+      "suspicious": {
+        "noEmptyInterface": "off",
+        "noExplicitAny": "error",
+        "noShadowRestrictedNames": "off",
+        "noThenProperty": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "error"
+      }
+    }
+  }
+}

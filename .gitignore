@@ -1,0 +1,8 @@
+.tent/
+node_modules/
+tent.d.ts
+results/
+build/
+data/
+desktop/target/
+desktop/gen/
