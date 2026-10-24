@@ -2,12 +2,12 @@
 name = "bots-desktop"
 version = "0.1.0"
 edition = "2021"
-description = "The window of bots: it starts the app on this computer and shows it"
+description = "The window of BID: it starts the app on this computer and shows it"
 license = "MIT"
 publish = false
 
 [[bin]]
-name = "bots"
+name = "bid"
 path = "src/main.rs"
 
 [build-dependencies]

@@ -1,6 +1,6 @@
 # Architecture
 
-tent-bots is one [Tent.js](https://tentjs.com) app that runs on your own computer. The Tent.js engine serves the screens, keeps the data and runs the flows. Every bot turn is a run of [Claude Code](https://docs.claude.com/en/docs/claude-code) in that bot's own folder. One install serves exactly one person.
+BID is one [Tent.js](https://tentjs.com) app that runs on your own computer. The Tent.js engine serves the screens, keeps the data and runs the flows. Every bot turn is a run of [Claude Code](https://docs.claude.com/en/docs/claude-code) in that bot's own folder. One install serves exactly one person.
 
 [architecture.html](architecture.html) is an interactive map of the same system, where each box links to its source. Download it and open it in a browser.
 

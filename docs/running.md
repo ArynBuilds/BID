@@ -1,6 +1,6 @@
-# Running tent-bots
+# Running BID
 
-How to install, connect, start and keep tent-bots running on your own computer.
+How to install, connect, start and keep BID running on your own computer.
 
 - [1. Requirements](#1-requirements)
 - [2. Install](#2-install)
@@ -28,7 +28,7 @@ Claude Code is a dependency of the app, so `npm install` installs it along with 
 ## 2. Install
 
 ```sh
-git clone https://github.com/ArynBuilds/tent-bots.git && cd tent-bots
+git clone https://github.com/ArynBuilds/BID.git && cd BID
 npm install
 npm run setup
 ```
@@ -87,7 +87,7 @@ npx tent build --out build
 npx tent service build --data data --port 4805 --line > desktop/target/release/start.txt
 ```
 
-The window is `desktop/target/release/bots` (`bots.exe` on Windows). It reads its start line from `start.txt` next to it, or from `BOTS_START`. `BOTS_AT` changes the address it opens.
+The window is `desktop/target/release/bid` (`bid.exe` on Windows). It reads its start line from `start.txt` next to it, or from `BOTS_START`. `BOTS_AT` changes the address it opens.
 
 ## 7. Apps and tools
 

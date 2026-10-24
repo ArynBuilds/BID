@@ -1,5 +1,5 @@
 {
-  "name": "tent-bots",
+  "name": "bid",
   "version": "0.1.0",
   "description": "Always-on bots that work for you, on your own computer, run by Claude Code",
   "private": true,
@@ -26,6 +26,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArynBuilds/tent-bots.git"
+    "url": "https://github.com/ArynBuilds/BID.git"
   }
 }

@@ -1,8 +1,8 @@
 <div align="center">
 
-# tent-bots
+# BID
 
-**Always-on bots that work for you, on your own computer.**
+**Bots in disguise: always-on bots that work for you, on your own computer.**
 
 Give each bot a name, a brief and a schedule. A chief routes what you ask to the right bot, and nothing is sent, paid for or deleted until you say Yes.
 
@@ -18,7 +18,7 @@ Give each bot a name, a brief and a schedule. A chief routes what you ask to the
 
 ---
 
-tent-bots runs a small team of bots on your own computer. Each bot is [Claude Code](https://docs.claude.com/en/docs/claude-code) working in a folder of its own, with a brief that says what it is for and a memory that lasts.
+BID runs a small team of bots on your own computer. Each bot is [Claude Code](https://docs.claude.com/en/docs/claude-code) working in a folder of its own, with a brief that says what it is for and a memory that lasts.
 
 - **Bots with their own memory.** Each bot keeps its own Claude Code session, files and skills. No bot sees another bot's memory.
 - **Routines.** "Every morning at eight": a bot runs on its schedule with nobody asking.
@@ -36,7 +36,7 @@ A message, a routine or the chief starts a run of a bot. The driver runs Claude 
 sequenceDiagram
     autonumber
     participant Y as You
-    participant A as tent-bots
+    participant A as BID
     participant D as claudeCode driver
     participant C as Claude Code
     participant T as Tool
@@ -62,7 +62,7 @@ It is one [Tent.js](https://tentjs.com) app: tables, functions, flows, two agent
 Requirements: Node.js 26, and a Claude subscription or an Anthropic API key.
 
 ```sh
-git clone https://github.com/ArynBuilds/tent-bots.git && cd tent-bots
+git clone https://github.com/ArynBuilds/BID.git && cd BID
 npm install          # the app, and Claude Code with it
 npm run setup        # creates data/ and the key for its secrets, once
 npx claude           # sign in to Claude Code, or add an API key in Settings later
@@ -83,7 +83,7 @@ Read [SECURITY.md](SECURITY.md) for what a bot can and cannot do, and report vul
 
 ## Status
 
-tent-bots is young software, and the first larger app built with Tent.js.
+BID is young software, and the first larger app built with Tent.js.
 
 - Each bot has a folder and the tools you give it, but no machine of its own.
 - The interface is in English only.
@@ -102,4 +102,4 @@ npm test         # no test calls Claude: stand-ins answer in its place
 
 ## License
 
-[MIT](LICENSE) © 2026 tent-bots contributors.
+[MIT](LICENSE) © 2026 BID contributors.

@@ -225,7 +225,7 @@ for (const engine of ENGINES.filter((one) => CHOSEN.includes(one))) {
 
 // In this repository the command `tent` is this file, run by the pinned runtime.
 const TENT = fileURLToPath(new URL('../../../parts/cli/shell.ts', import.meta.url))
-const WINDOW = fileURLToPath(new URL('../desktop/target/release/bots.exe', import.meta.url))
+const WINDOW = fileURLToPath(new URL('../desktop/target/release/bid.exe', import.meta.url))
 
 /** Starts a program of the test's own, and answers it with the first line of its standard error that fits. */
 function started(program: string, words: string[], env: NodeJS.ProcessEnv, fits: RegExp) {

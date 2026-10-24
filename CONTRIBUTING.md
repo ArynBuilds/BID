@@ -1,6 +1,6 @@
-# Contributing to tent-bots
+# Contributing to BID
 
-Thank you for helping. tent-bots runs bots that act on people's computers, so we value small, well-explained, tested changes over large rewrites.
+Thank you for helping. BID runs bots that act on people's computers, so we value small, well-explained, tested changes over large rewrites.
 
 ## Ways to contribute
 
@@ -16,7 +16,7 @@ Good first areas: translations of the interface, more MCP apps for the starter l
 You need Node.js 26 and npm. For the desktop window you also need Rust.
 
 ```sh
-git clone <your fork> tent-bots && cd tent-bots
+git clone <your fork> BID && cd BID
 npm install
 npm run dev
 ```

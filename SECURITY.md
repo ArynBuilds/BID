@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-tent-bots runs on your own computer. Security fixes land on the default branch and in the next release; please run the latest release.
+BID runs on your own computer. Security fixes land on the default branch and in the next release; please run the latest release.
 
 ## Reporting a vulnerability
 
@@ -14,7 +14,7 @@ We aim to acknowledge reports within 3 working days and to agree on a disclosure
 
 ## Security model
 
-tent-bots is designed for one person on their own computer. Its bots are Claude Code runs that can read and write files and call tools, so the main question is what a bot may do without asking you.
+BID is designed for one person on their own computer. Its bots are Claude Code runs that can read and write files and call tools, so the main question is what a bot may do without asking you.
 
 ### Actors
 
