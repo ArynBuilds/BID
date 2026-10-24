@@ -83,7 +83,7 @@ Read [SECURITY.md](SECURITY.md) for what a bot can and cannot do, and report vul
 
 ## Status
 
-BID is young software, and the first larger app built with Tent.js.
+BID was made for personal use and to test the Tent.js framework: it is the first larger app built with it. It is shared as it is, young software rather than a product.
 
 - Each bot has a folder and the tools you give it, but no machine of its own.
 - The interface is in English only.

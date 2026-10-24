@@ -6,7 +6,7 @@ import { getBot } from '../functions/bots'
 
 export const botScreen = screen('botScreen', {
   path: '/bots/:id',
-  title: 'bots',
+  title: 'BID',
   access: 'signedIn',
   layout: Frame,
   state: { details: { type: boolean(), in: 'address' } },

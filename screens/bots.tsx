@@ -6,7 +6,7 @@ import { botList } from '../functions/bots'
 // The list of bots is the sidebar of every screen; here the window opens on the chief, the first tile.
 export const botsScreen = screen('botsScreen', {
   path: '/bots',
-  title: 'bots',
+  title: 'BID',
   access: 'signedIn',
   layout: Frame,
   data: { bots: read(botList) },
