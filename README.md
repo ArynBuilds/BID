@@ -18,6 +18,10 @@ Give each bot a name, a brief and a schedule. A chief routes what you ask to the
 
 ---
 
+![A bot using its tools and answering from its own memory](docs/images/memory.png)
+
+![A bot's brief, routines and run history](docs/images/bot.png)
+
 BID runs a small team of bots on your own computer. Each bot is [Claude Code](https://docs.claude.com/en/docs/claude-code) working in a folder of its own, with a brief that says what it is for and a memory that lasts.
 
 - **Bots with their own memory.** Each bot keeps its own Claude Code session, files and skills. No bot sees another bot's memory.
